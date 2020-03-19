@@ -1,3 +1,18 @@
+# Hash
+## 1
+def solution(participant, completion):
+    
+    if len(participant) > 1:
+        for i in completion:
+            participant.remove(i)
+    
+    answer = participant[0]
+    
+    return answer
+
+
+
+
 # Sort
 ## 1
 def solution(array, commands):
