@@ -12,6 +12,20 @@ def solution(array, commands):
     
     return answer
 
+## 2
+def solution(numbers):
+    
+    numbers = list(map(str, numbers))
+    numbers.sort()
+    numbers = numbers[::-1]
+        
+    answer = ''.join([i for i in numbers])
+         
+    if(answer[0] == '0'):
+        answer = str(0)
+    
+    return answer
+
 
 
 
