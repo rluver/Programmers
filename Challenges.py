@@ -11,6 +11,31 @@ def solution(participant, completion):
     return answer
 
 
+## 2
+def solution(phone_book):
+    
+    phone_book.sort(key = lambda x : len(x))
+    
+    i = 0
+    while(i < len(phone_book)):
+        test_phone_book = phone_book
+        test = phone_book[i]
+        test_length = len(test)
+        test_phone_book.remove(test)
+        condition = test in list(map(lambda x : x[:test_length], test_phone_book))
+        
+        if condition == True:
+            break;
+        else:
+            i += 1
+    
+    if condition == True:
+        return False
+    else:
+        return True
+
+
+
 
 
 # Sort
@@ -26,6 +51,7 @@ def solution(array, commands):
         answer.append(temp[commands[i][2] - 1])
     
     return answer
+
 
 ## 2
 def solution(numbers):
