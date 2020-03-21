@@ -37,7 +37,31 @@ def solution(phone_book):
 
 
 
+# Heap
+## 1
+def unequal(x):
+        return x >= K
 
+def solution(scoville, K):
+       
+    count = 0
+    
+    for _ in range(len(scoville) - 1):
+        if False in list(map(unequal, scoville)):
+            scoville.append(scoville[0] + (scoville[1] * 2))
+            scoville.remove(scoville[0])
+            scoville.remove(scoville[0])
+            scoville.sort()
+            count += 1
+    
+    if False in list(map(unequal, scoville)):
+        return -1
+    else:
+        return count
+
+    
+    
+    
 # Sort
 ## 1
 def solution(array, commands):
@@ -70,24 +94,34 @@ def solution(numbers):
 
 
 
-# Heap
+# Brute-Force Search
 ## 1
-def unequal(x):
-        return x >= K
+def solution(answer):
+    
+    student = [[1, 2, 3, 4, 5],
+               [2, 1, 2, 3, 2, 4, 2, 5],
+               [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]]
+    
+    
+    student_answer = [[], [], []]
+   
+    for i in range(0, 3):
+        quotient, remainder = divmod(len(answer), len(student[i]))
+        student_answer[i] = student[i] * quotient + student[i][ : remainder]
+        
+        
+    result = [[], [], []]
+    
+    for i in range(0, 3):        
+        result[i] = [i + 1, sum(list(map(lambda j: student_answer[i][j] == answer[j], range(len(answer)))))]
+        
+    
+    sum_max = max(map(lambda x: x[:][1], result))    
+    answer = []
 
-def solution(scoville, K):
-       
-    count = 0
+    for i in range(len(result)):
+        if result[i][1] == sum_max:
+            answer.append(i + 1)
+   
     
-    for _ in range(len(scoville) - 1):
-        if False in list(map(unequal, scoville)):
-            scoville.append(scoville[0] + (scoville[1] * 2))
-            scoville.remove(scoville[0])
-            scoville.remove(scoville[0])
-            scoville.sort()
-            count += 1
-    
-    if False in list(map(unequal, scoville)):
-        return -1
-    else:
-        return count
+    return(answer)
