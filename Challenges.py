@@ -78,18 +78,38 @@ def solution(array, commands):
 
 
 ## 2
+def permutation(numbers):
+    
+    result = [numbers[:]]
+    arr = [0] * len(numbers)
+    i = 0
+    while i < len(arr):
+        if arr[i] < i:
+            if i % 2 == 0:
+                numbers[0], numbers[i] = numbers[i], numbers[0]
+        else:
+            numbers[arr[i]], numbers[i] = numbers[i], numbers[arr[i]]
+        result.append(numbers[:])
+        arr[i] += 1
+        i = 0
+    else:
+        arr[i] = 0
+        i += 1
+        
+    return result
+
+
 def solution(numbers):
     
-    numbers = list(map(str, numbers))
-    numbers.sort()
-    numbers = numbers[::-1]
-        
-    answer = ''.join([i for i in numbers])
-         
-    if(answer[0] == '0'):
-        answer = str(0)
+    numbers = permutation(numbers)
     
-    return answer
+    for i in range(len(numbers)):
+        numbers[i] = ''.join(list(map(str, numbers[i])))
+        
+    if int(max(numbers)) == 0:
+        return str(0)
+    else:
+        return max(numbers)
 
 
 
