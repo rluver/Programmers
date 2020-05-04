@@ -1,5 +1,6 @@
 # Hash
 ## 1
+'''fail to satisfy efficiency'''
 def solution(participant, completion):
     
     if len(participant) > 1:
@@ -7,6 +8,19 @@ def solution(participant, completion):
             participant.remove(i)
     
     answer = participant[0]
+    
+    return answer
+
+---------------------------------------------------------------
+
+from collections import Counter
+
+def solution(participant, completion):
+    
+    if len(participant) > 1:
+        cnt1 = Counter([x for x in participant])
+        cnt2 = Counter([x for x in completion])
+        answer = list(cnt1 - cnt2)[0]
     
     return answer
 
