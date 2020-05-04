@@ -33,6 +33,22 @@ def solution(phone_book):
         return False
     else:
         return True
+    
+    
+## 3
+from collections import Counter
+
+def solution(clothes):
+    
+    answer = 1
+    
+    cnt = Counter([x[1] for x in clothes])
+    for i in cnt.values():
+        answer *= (i + 1)
+        
+    answer -= 1
+    
+    return answer
 
 
 
