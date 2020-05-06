@@ -193,28 +193,28 @@ def solutions(numbers):
     permutation = sum(permutation, [])
     permutation = list(set(permutation))
         
-    permutation = list(filter(lambda x: int(x[-1]) % 2 != 0, permutation))
-    permutation = list(filter(lambda x: int(x[-1]) % 5 != 0, permutation))
-    permutation = list(filter(lambda x: sum([int(i) for i in x]) % 3 != 0, permutation))
+    permutation = list(filter(lambda x: int(x) / 2 == 1.0 or int(x[-1]) % 2 != 0, permutation))
+    permutation = list(filter(lambda x: int(x) / 3 == 1.0 or sum([int(i) for i in x]) % 3 != 0, permutation))
+    permutation = list(filter(lambda x: int(x) / 5 == 1.0 or int(x[-1]) % 5 != 0, permutation))    
     
     permutation = list(map(lambda x: int(x), permutation))
-    
-    permutation.sort()
+        
     permutation = list(set(permutation))
+    permutation.sort()
     
     if 0 in permutation:
         permutation.remove(0)
     if 1 in permutation:
         permutation.remove(1)
+    
          
     for i in permutation:
-        j = 1
-        while(j <= math.sqrt(i)):
-            j += 1
-            if(i % j == 0):
-                permutation.remove(i)
-                break
-        
+        if(i >= 10):
+            for j in range(2, int(math.sqrt(i))):
+                if(i % j == 0):
+                    permutation.remove(i)
+                    break
+                           
     answer = len(permutation)
     
     return(answer)
