@@ -67,6 +67,25 @@ def solution(clothes):
 
 
 
+# Stack/Queue
+## 1
+def solution(heights):
+    
+    answer = [0]    
+    
+    for i in range(1, len(heights)):
+        index = 0
+        for j in range(i - 1, -1, -1):
+            if heights[i] < heights[j]:
+                index = j + 1
+                break
+        answer.append(index)
+        
+    return answer
+
+
+
+
 # Heap
 ## 1
 def unequal(x):
