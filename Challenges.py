@@ -84,6 +84,24 @@ def solution(heights):
     return answer
 
 
+# 3
+from collections import Counter
+
+def solution(progresses, speeds):
+    
+    diff = list(map(lambda x, y: (100 - x) / y, progresses, speeds))
+    time = list(map(lambda x: int(x) if x - int(x) == 0.0 else int(x) + 1, diff))
+    
+    for i in range(len(time) - 1):
+        if time[i] > time[i + 1]:
+            time[i + 1] = time[i]
+    
+    count = Counter(time)
+    answer = list(count.values())
+    
+    return answer
+
+
 
 
 # Heap
