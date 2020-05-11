@@ -125,6 +125,34 @@ def solution(scoville, K):
         return -1
     else:
         return count
+    
+    
+'''fail to satisfy efficiency'''
+def solution(scoville, K):
+    
+    cnt = 0
+    scoville.sort()
+    
+    if len(scoville) == 0:
+        return -1
+    elif K == 0:
+        return cnt
+    if len(scoville) <= 1:
+        if scoville[0] >= K:
+            return cnt
+        else:
+            return -1
+    else:
+        while scoville[0] < K:
+            cnt += 1
+            scoville.append(scoville[0] + 2 * scoville[1])
+            scoville.pop(0)
+            scoville.pop(0)
+            scoville.sort()            
+            if len(scoville) == 1 and scoville[0] < K:
+                return -1
+            
+    return cnt
 
     
     
