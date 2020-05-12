@@ -93,3 +93,57 @@ vector<int> solution(vector<int> progresses, vector<int> speeds)
 
     return answer;    
 }
+
+
+
+
+# Heap
+## 1
+/* fail to satisfy efficiency */
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<int> scoville, int K) 
+{
+    int cnt = 0;
+    sort(scoville.begin(), scoville.end());
+
+    if (scoville.size() == 0)
+    {
+        return -1;
+    }
+    else if (K == 0)
+    {
+        return cnt;
+    }
+    if (scoville.size() <= 1)
+    {
+        if (scoville[0] >= K)
+        {
+            return cnt;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    else
+    {
+        while (scoville[0] < K)
+        {
+            cnt++;
+            scoville.push_back(scoville[0] + 2 * scoville[1]);
+            scoville.erase(scoville.begin(), scoville.begin() + 2);
+            sort(scoville.begin(), scoville.end());
+            if (scoville.size() == 1 && scoville[0] < K)
+            {
+                return -1;
+            }
+        }
+    }
+
+    return cnt;
+}
