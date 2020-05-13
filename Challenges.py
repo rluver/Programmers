@@ -105,28 +105,7 @@ def solution(progresses, speeds):
 
 
 # Heap
-## 1
-def unequal(x):
-        return x >= K
-
-def solution(scoville, K):
-       
-    count = 0
-    
-    for _ in range(len(scoville) - 1):
-        if False in list(map(unequal, scoville)):
-            scoville.append(scoville[0] + (scoville[1] * 2))
-            scoville.remove(scoville[0])
-            scoville.remove(scoville[0])
-            scoville.sort()
-            count += 1
-    
-    if False in list(map(unequal, scoville)):
-        return -1
-    else:
-        return count
-    
-    
+## 1  
 '''fail to satisfy efficiency'''
 def solution(scoville, K):
     
@@ -149,6 +128,34 @@ def solution(scoville, K):
             scoville.pop(0)
             scoville.pop(0)
             scoville.sort()            
+            if len(scoville) == 1 and scoville[0] < K:
+                return -1
+            
+    return cnt
+
+
+import heapq
+
+def solution(scoville, K):
+    
+    cnt = 0
+    heapq.heapify(scoville)
+    
+    if len(scoville) == 0:
+        return -1
+    elif K == 0:
+        return cnt
+    if len(scoville) <= 1:
+        if scoville[0] >= K:
+            return cnt
+        else:
+            return -1
+    else:
+        while scoville[0] < K:
+            cnt += 1
+            min0 = heapq.heappop(scoville)
+            min1 = heapq.heappop(scoville)
+            heapq.heappush(scoville, min0 + 2 * min1)            
             if len(scoville) == 1 and scoville[0] < K:
                 return -1
             
