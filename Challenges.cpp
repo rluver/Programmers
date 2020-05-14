@@ -99,19 +99,23 @@ vector<int> solution(vector<int> progresses, vector<int> speeds)
 
 # Heap
 ## 1
-/* fail to satisfy efficiency */
 #include <string>
 #include <vector>
-#include <algorithm>
+#include <queue>
 
 using namespace std;
 
-int solution(vector<int> scoville, int K) 
+int solution(vector<int> scoville, int K)
 {
-    int cnt = 0;
-    sort(scoville.begin(), scoville.end());
+    int cnt = 0, i, min0, min1;
+    priority_queue<int, vector<int>, greater<int>> pq;
 
-    if (scoville.size() == 0)
+    for (i = 0; i < (int)scoville.size(); i++) 
+    {
+        pq.push(scoville[i]);
+    }
+    
+    if (pq.size() == 0)
     {
         return -1;
     }
@@ -119,9 +123,9 @@ int solution(vector<int> scoville, int K)
     {
         return cnt;
     }
-    if (scoville.size() <= 1)
+    if (pq.size() <= 1)
     {
-        if (scoville[0] >= K)
+        if (pq.top() >= K)
         {
             return cnt;
         }
@@ -132,13 +136,15 @@ int solution(vector<int> scoville, int K)
     }
     else
     {
-        while (scoville[0] < K)
+        while (pq.top() < K)
         {
             cnt++;
-            scoville.push_back(scoville[0] + 2 * scoville[1]);
-            scoville.erase(scoville.begin(), scoville.begin() + 2);
-            sort(scoville.begin(), scoville.end());
-            if (scoville.size() == 1 && scoville[0] < K)
+            min0 = pq.top();
+            pq.pop();
+            min1 = pq.top();
+            pq.pop();
+            pq.push(min0 + 2 * min1);
+            if (pq.size() == 1 && pq.top() < K)
             {
                 return -1;
             }
