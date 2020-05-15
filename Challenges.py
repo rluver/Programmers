@@ -133,6 +133,7 @@ def solution(scoville, K):
             
     return cnt
 
+---------------------------------------------------------------
 
 import heapq
 
@@ -160,6 +161,27 @@ def solution(scoville, K):
                 return -1
             
     return cnt
+
+
+## 2
+import heapq
+
+def solution(stock, dates, supplies, k):
+    
+    answer, idx = 0, 0
+    pq = []
+    
+    while stock < k:
+        for i in range(idx, len(dates)):
+            if stock < dates[i]:
+                break
+            heapq.heappush(pq, -supplies[i])
+            idx = i + 1
+        
+        stock += heapq.heappop(pq) * -1
+        answer += 1
+    
+    return answer
 
     
     
