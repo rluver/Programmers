@@ -153,3 +153,36 @@ int solution(vector<int> scoville, int K)
 
     return cnt;
 }
+
+
+## 2
+#include <string>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+int solution(int stock, vector<int> dates, vector<int> supplies, int k)
+{
+    int i, answer = 0, idx = 0;
+    priority_queue<int, vector<int>, less<int>> pq;
+    
+    while (stock < k)
+    {
+        for (i = idx; i < (int)dates.size(); i++)
+        {
+            if (stock < dates[i])
+            {
+                break;
+            }
+            pq.push(supplies[i]);
+            idx = i + 1;
+        }
+        
+        stock += pq.top();
+        pq.pop();
+        answer += 1;
+    }
+    
+    return answer;    
+}
