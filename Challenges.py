@@ -65,6 +65,33 @@ def solution(clothes):
     return answer
 
 
+## 4
+def solution(genres, plays):
+    
+    items = [i for i in enumerate(zip(genres, plays))]    
+    
+    genres_cnt = dict()
+    for i in list(set(genres)):
+        genres_cnt[i] = 0        
+    for i in items:
+        genres_cnt[i[1][0]] += i[1][1]
+                
+    items.sort(key = lambda x: (-genres_cnt[x[1][0]], -x[1][1]))
+    
+    cnt = [1]
+    for i in range(1, len(items)):
+        if items[i - 1][1][0] == items[i][1][0]:
+            cnt.append(cnt[i - 1] + 1)
+        else:
+            cnt.append(1)
+            
+    idx = [i for i in range(len(cnt)) if cnt[i] <= 2]
+    
+    answer = [items[i][0] for i in idx]
+        
+    return answer
+
+
 
 
 # Stack/Queue
