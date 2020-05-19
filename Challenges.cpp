@@ -1,3 +1,42 @@
+# Hash
+## 1
+
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+string solution(vector<string> participant, vector<string> completion) 
+{
+    int i;
+    string answer = "";
+
+    sort(participant.begin(), participant.end());
+    sort(completion.begin(), completion.end());
+    
+    for (i = 0; i < participant.size(); i++)
+    {
+        if (i <= participant.size() - 2)
+        {
+            if (participant[i] != completion[i])
+            {
+                answer = participant[i];
+                break;
+            }
+        }
+        else
+        {
+            answer = participant[i];
+        }
+    }
+
+    return answer;
+}
+
+
+
+
 # Stack/Queue
 ## 1
 
@@ -25,6 +64,7 @@ vector<int> solution(vector<int> heights)
 
 
 ## 3
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -99,6 +139,7 @@ vector<int> solution(vector<int> progresses, vector<int> speeds)
 
 # Heap
 ## 1
+
 #include <string>
 #include <vector>
 #include <queue>
@@ -156,6 +197,7 @@ int solution(vector<int> scoville, int K)
 
 
 ## 2
+
 #include <string>
 #include <vector>
 #include <queue>
