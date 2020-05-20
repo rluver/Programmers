@@ -35,6 +35,42 @@ string solution(vector<string> participant, vector<string> completion)
 }
 
 
+## 2
+
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+bool solution(vector<string> phone_book) 
+{
+    int i, j;
+    bool answer = true, judge = false;
+
+    sort(phone_book.begin(), phone_book.end());
+    
+    for (i = 0; i < (int)phone_book.size() - 1; i++)
+    {
+        for (j = i + 1; j < (int)phone_book.size(); j++)
+        {
+            if (phone_book[j].find(phone_book[i]) == 0)
+            {
+                answer = false;
+                judge = true;
+                break;
+            }
+        }
+        if (judge == true)
+        {
+            break;
+        }
+    }
+    
+    return answer;
+}
+
+
 
 
 # Stack/Queue
