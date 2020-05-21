@@ -315,3 +315,31 @@ def solutions(numbers):
     answer = len(permutation)
     
     return(answer)
+
+
+
+
+# Greedy
+## 1
+def solution(n, lost, reserve):
+    
+    vec = [1] * n
+    
+    for i in lost:
+        vec[i - 1] -= 1
+    for i in reserve:
+        vec[i - 1] += 1
+        
+    for i in range(len(vec) - 1):
+        if vec[i] == 0 and vec[i + 1] == 2:
+            vec[i] += 1
+            vec[i + 1] -= 1
+            
+    for i in range(len(vec) - 1, 0, -1):
+        if vec[i] == 0 and vec[i - 1] == 2:
+            vec[i] += 1
+            vec[i - 1] -= 1
+                     
+    answer = sum(list(map(lambda x: x >= 1, vec)))
+    
+    return answer
