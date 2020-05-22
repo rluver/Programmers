@@ -71,6 +71,41 @@ bool solution(vector<string> phone_book)
 }
 
 
+## 3
+
+#include <string>
+#include <vector>
+#include <map>
+
+using namespace std;
+
+int solution(vector<vector<string>> clothes)
+{
+    int i, answer = 1;
+    map<string, int> vec;
+    map<string, int>::iterator iter;
+
+    for (i = 0; i < (int)clothes.size(); i++)
+    {
+        if (vec.count(clothes[i][1]) == 0)
+        {
+            vec.insert(pair<string, int>(clothes[i][1], 1));
+        }
+        else
+        {
+            vec.find(clothes[i][1])->second++;
+        }
+    }
+
+    for (iter = vec.begin(); iter != vec.end(); iter++)
+    {
+        answer *= (iter->second + 1);
+    }
+
+    return answer - 1;
+}
+
+
 
 
 # Stack/Queue
