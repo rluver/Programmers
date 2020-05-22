@@ -264,3 +264,56 @@ int solution(int stock, vector<int> dates, vector<int> supplies, int k)
     
     return answer;    
 }
+
+
+
+
+# Greedy
+## 1
+
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n, vector<int> lost, vector<int> reserve) 
+{
+    int i, answer = 0;
+    vector<int> vec(n, 1);
+
+    for (i = 0; i < (int)lost.size(); i++)
+    {
+        vec[(lost[i] - 1)] -= 1;
+    }
+    for (i = 0; i < (int)reserve.size(); i++)
+    {
+        vec[(reserve[i] - 1)] += 1;
+    }
+
+    for (i = 0; i < (int)vec.size() - 1; i++)
+    {
+        if (vec[i] == 0 && vec[i + 1] == 2)
+        {
+            vec[i] += 1;
+            vec[i + 1] -= 1;
+        }
+    }
+    for (i = (int)vec.size() - 1; 0 < i; i--)
+    {
+        if (vec[i] == 0 && vec[i - 1] == 2)
+        {
+            vec[i] += 1;
+            vec[i - 1] -= 1;
+        }
+    }
+       
+    for (i = 0; i < vec.size(); i++)
+    {
+        if (vec[i] >= 1)
+        {
+            answer += 1;
+        }        
+    }
+
+    return answer;
+}
