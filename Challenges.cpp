@@ -303,6 +303,33 @@ int solution(int stock, vector<int> dates, vector<int> supplies, int k)
 
 
 
+# Sort
+## 1
+
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+vector<int> solution(vector<int> array, vector<vector<int>> commands) 
+{
+    int i;
+    vector<int> answer, temp;
+
+    for (i = 0; i < (int)commands.size(); i++)
+    {
+        temp = vector<int>(array.begin() + commands[i][0] - 1, array.begin() + commands[i][1]);
+        sort(temp.begin(), temp.end());
+        answer.push_back(temp[commands[i][2] - 1]);
+    }
+
+    return answer;
+}
+
+
+
+
 # Greedy
 ## 1
 
