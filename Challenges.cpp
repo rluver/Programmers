@@ -379,3 +379,38 @@ int solution(int n, vector<int> lost, vector<int> reserve)
 
     return answer;
 }
+
+
+## 4
+
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<int> people, int limit) 
+{
+    int start = 0, end = people.size() - 1, dup = 0;
+    int answer;
+
+    sort(people.begin(), people.end());
+
+    while (start < end)
+    {
+        if (people[start] + people[end] <= limit)
+        {
+            dup++;
+            start++;
+            end--;
+        }
+        else
+        {
+            end--;
+        }
+    }
+
+    answer = people.size() - dup;
+
+    return answer;
+}
