@@ -277,7 +277,8 @@ def solution(answer):
 ## 2
 import math
 from itertools import permutations
-   
+
+
 def solutions(numbers):
     
     length = len(numbers)
@@ -290,32 +291,37 @@ def solutions(numbers):
     permutation = sum(permutation, [])
     permutation = list(set(permutation))
         
-    permutation = list(filter(lambda x: int(x) / 2 == 1.0 or int(x[-1]) % 2 != 0, permutation))
-    permutation = list(filter(lambda x: int(x) / 3 == 1.0 or sum([int(i) for i in x]) % 3 != 0, permutation))
-    permutation = list(filter(lambda x: int(x) / 5 == 1.0 or int(x[-1]) % 5 != 0, permutation))    
+    permutation = list(filter(lambda x: int(x[-1]) % 2 != 0, permutation))
+    permutation = list(filter(lambda x: int(x[-1]) % 5 != 0, permutation))
+    permutation = list(filter(lambda x: sum([int(i) for i in x]) % 3 != 0 if int(x) > 3 else x, permutation))
     
     permutation = list(map(lambda x: int(x), permutation))
-        
+    
     permutation = list(set(permutation))
-    permutation.sort()
     
     if 0 in permutation:
         permutation.remove(0)
     if 1 in permutation:
         permutation.remove(1)
+        
+    temp1 = len(permutation)
+    temp2 = 0
     
-         
-    for i in permutation:
-        if(i >= 10):
-            for j in range(2, int(math.sqrt(i))):
-                if(i % j == 0):
-                    permutation.remove(i)
-                    break
-                           
+    while temp1 != temp2:
+        temp1 = len(permutation)
+        for i in permutation:
+            if(i >= 10):
+                j = 1
+                while(j <= math.sqrt(i) + 1):
+                    j += 1
+                    if(i % j == 0):
+                        permutation.remove(i)
+                        break
+                
+        temp2 = len(permutation)
+    
     answer = len(permutation)
     
-    return(answer)
-
 
 
 
