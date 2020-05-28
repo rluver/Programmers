@@ -239,6 +239,24 @@ def solution(numbers):
     return answer
 
 
+## 3
+def solution(citations):
+            
+    l = len(citations)
+    h = 0
+    
+    while True:        
+        upper_cit = sum(list(map(lambda x: x >= h, citations)))
+        inf_cit = sum(list(map(lambda x: x <= h, citations)))
+        
+        if upper_cit >= h and (l - h) <= inf_cit:
+            break
+        else:
+            h += 1
+        
+    return h
+
+
 
 
 # Brute-Force Search
