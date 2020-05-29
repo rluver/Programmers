@@ -328,6 +328,51 @@ vector<int> solution(vector<int> array, vector<vector<int>> commands)
 }
 
 
+## 3
+
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(vector<int> citations) 
+{
+    int l = citations.size(), h = 0, i;
+    int upper_cit, inf_cit;
+
+    while (true)
+    {
+        upper_cit = 0;
+        inf_cit = 0;
+
+        for (i = 0; i < citations.size(); i++)
+        {
+            if (citations[i] >= h)
+            {
+                upper_cit++;
+            }
+
+            if (citations[i] <= h)
+            {
+                inf_cit++;
+            }
+        }
+
+        if (upper_cit >= h && (l - h) <= inf_cit)
+        {
+            break;
+        }
+        else
+        {
+            h++;
+        }
+
+    }
+    
+    return h;
+}
+
+
 
 
 # Greedy
