@@ -206,6 +206,36 @@ vector<int> solution(vector<int> progresses, vector<int> speeds)
 }
 
 
+## 6
+
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> solution(vector<int> prices)
+{
+    int i, j, time;
+    vector<int> answer;
+
+    for (i = 0; i < prices.size(); i++)
+    {
+        time = 0;
+        for (j = i + 1; j < prices.size(); j++)
+        {
+            time++;
+            if (prices[i] > prices[j])
+            {
+                break;
+            }
+        }
+        answer.push_back(time);
+    }
+    
+    return answer;
+}
+
+
 
 
 # Heap
