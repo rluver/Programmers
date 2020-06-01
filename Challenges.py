@@ -385,6 +385,32 @@ def solution(n, lost, reserve):
     return answer
 
 
+## 3
+def solution(number, k):
+    
+    def findMax(string):
+        M = string[0]
+        for i in range(1, len(string)):            
+            if int(M) < int(string[i]):
+                M = string[i]
+        
+        return M
+    
+    answer = ''
+    n = len(number) - k    
+    
+    while n > 1:
+        ind = number[: n - 1].index(findMax(number[: n - 1]))
+        answer += number[ind]
+        number = number[ind + 1:]
+        n -= 1
+        if len(number) == n:
+            answer += number
+            break
+            
+    return answer
+
+
 ## 4
 def solution(people, limit):
     
