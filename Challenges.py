@@ -386,28 +386,25 @@ def solution(n, lost, reserve):
 
 
 ## 3
+'''test10 time over'''
 def solution(number, k):
     
-    def findMax(string):
-        M = string[0]
-        for i in range(1, len(string)):            
-            if int(M) < int(string[i]):
-                M = string[i]
-        
-        return M
-    
     answer = ''
-    n = len(number) - k    
+    n = len(number) - k
+    start = 0
     
-    while n > 1:
-        ind = number[: n - 1].index(findMax(number[: n - 1]))
-        answer += number[ind]
-        number = number[ind + 1:]
-        n -= 1
-        if len(number) == n:
-            answer += number
-            break
-            
+    for i in range(0, n):
+        _max = number[start]
+        idx_max = start
+        
+        for j in range(start, k + i + 1):
+            if _max < number[j]:
+                _max = number[j]
+                idx_max = j
+                
+        start = idx_max + 1
+        answer += _max
+                    
     return answer
 
 
