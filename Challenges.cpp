@@ -456,6 +456,40 @@ int solution(int n, vector<int> lost, vector<int> reserve)
 }
 
 
+## 3
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(string number, int k) 
+{
+    string answer = "";
+    int n = number.size() - k, start = 0;
+    int _max, idx_max, i, j;
+    
+    for (i = 0; i < n; i++)
+    {
+        _max = number[start];
+        idx_max = start;
+        
+        for(j = start; j < k + i + 1; j++)
+        {
+            if (_max < number[j])
+            {
+                _max = number[j];
+                idx_max = j;
+            }
+        }
+        
+        start = idx_max + 1;
+        answer += _max;
+    }
+    
+    return answer;
+}
+
+
 ## 4
 
 #include <string>
