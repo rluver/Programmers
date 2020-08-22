@@ -442,7 +442,7 @@ def solution(people, limit):
 
 
 
-# Dynamic Programmingd
+# Dynamic Programming
 
 ## 2
 def solution(triangle):
@@ -457,3 +457,24 @@ def solution(triangle):
                 triangle[i][j] += max(triangle[i - 1][j], triangle[i - 1][j - 1])    
                 
     return max(triangle[-1])
+
+
+
+
+# DFS/BFS
+
+##1
+def solution(numbers, target):
+    
+    tree = [0] 
+    
+    for i in numbers:    
+        sub_tree = []
+        
+        for j in tree:
+            sub_tree.append(j + i)
+            sub_tree.append(j - i)
+            
+        tree = sub_tree
+        
+    return tree.count(target)
